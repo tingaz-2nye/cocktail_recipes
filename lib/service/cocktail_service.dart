@@ -1,6 +1,8 @@
 import 'package:cocktails_recipes/api/api_base.dart';
 import 'package:cocktails_recipes/model/categories/categories.dart';
 import 'package:cocktails_recipes/model/categories/drink.dart';
+import 'package:cocktails_recipes/model/cocktail_details/cocktail_details.dart';
+import 'package:cocktails_recipes/model/cocktail_details/drink.dart';
 import 'package:cocktails_recipes/model/cocktails/cocktails.dart';
 import 'package:cocktails_recipes/model/cocktails/drink.dart';
 import 'package:cocktails_recipes/utils/locator.dart';
@@ -25,6 +27,18 @@ class CocktailService {
 
     for (var element in data) {
       print(element.strDrink);
+    }
+    return data;
+  }
+
+  Future<List<Details>> getCocktailDetails(id) async {
+    var url = 'lookup.php?i=$id';
+    var response = await _api.get(url, {});
+
+    var data = CocktailDetails.fromJson(response).details;
+
+    for (var element in data) {
+      print(element.strIngredient1);
     }
     return data;
   }

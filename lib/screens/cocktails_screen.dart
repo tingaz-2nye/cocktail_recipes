@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cocktails_recipes/provider/cocktail_provider.dart';
+import 'package:cocktails_recipes/screens/cocktail_details.dart';
 import 'package:cocktails_recipes/utils/api_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,14 @@ class _CocktailScreensState extends State<CocktailScreens> {
                         ),
                       ),
                       title: Text(data[index].strDrink.toString()),
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => CocktailDetailsScreen(
+                                    id: data[index].idDrink.toString(),
+                                    name: data[index].strDrink.toString())))
+                      },
                     );
                   });
             default:
